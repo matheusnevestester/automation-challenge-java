@@ -1,5 +1,13 @@
+@ProductSubscription
 Feature: Product Subscription
 
+  Scenario: Validate product subscrition full journey
+    Given I open Chrome and launch the application
+    When I select type "Special"
+    And  I select support plan "Full"
+    And I write monthly duration of "6"
+    And I click in calculate price button
+    Then I validate price is "2249.10 $"
 
   Scenario: Validate the product price for a full special support plan for 6 months simulation
     Given I open Chrome and launch the application
@@ -25,5 +33,5 @@ Feature: Product Subscription
       | Premium       | Basic | 1        | 174.93 $ |
 
 
-# Considering the time available to do the project I wont do all variations
+# Due to the time available to do the project I wont do all variations
 

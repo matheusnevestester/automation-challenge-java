@@ -3,7 +3,7 @@ package webServiceTesting.unit;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import webServiceTesting.CreateUser;
+import clients.CreateUser;
 
 public class CreateUserTest {
 
@@ -26,7 +26,7 @@ public class CreateUserTest {
 
   @Test
   public void buildBody_validUserAndJob_shouldReturnJsonWithUserAndJob() {
-    Assert.assertEquals(jsonWithUserAndJob, createUser.buildBody());
+    Assert.assertEquals(jsonWithUserAndJob, createUser.buildUserPayload());
   }
 
   @Test
