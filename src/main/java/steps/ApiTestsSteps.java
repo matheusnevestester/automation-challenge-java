@@ -1,4 +1,4 @@
-package webServiceTesting;
+package steps;
 
 import clients.CreateUser;
 import clients.DeleteUser;
@@ -8,7 +8,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.response.Response;
 
-public class api_tests_steps {
+public class ApiTestsSteps {
 
     private String payload;
     private Response postResponse;
@@ -20,10 +20,12 @@ public class api_tests_steps {
     public void useUserCreationWebService() {
         createUser = new CreateUser();
     }
+
     @Given("^I use the user deletion service$")
     public void useUserDeletionWebService() {
         deleteUser = new DeleteUser();
     }
+
     @Given("^I use the user registering service$")
     public void useUserRegisteringWebService() {
         registerUser = new RegisterUser();
@@ -56,7 +58,7 @@ public class api_tests_steps {
 
     @When("^I try to delete the user \"([^\"]*)\"$")
     public void deleteUser(String userId) {
-       this.postResponse = deleteUser.deleteUser(userId);
+        this.postResponse = deleteUser.deleteUser(userId);
     }
 
     @When("^I set email as \"([^\"]*)\"$")
@@ -83,6 +85,7 @@ public class api_tests_steps {
     public void validateRegisterResponse(String status) {
         registerUser.validateRegisterResponse(status, this.postResponse);
     }
+
     @When("^I send the register post request$")
     public void sendRegisterPostRequest() {
         this.postResponse = registerUser.postRequest(payload);

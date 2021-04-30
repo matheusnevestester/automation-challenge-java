@@ -16,12 +16,12 @@ public class DeleteUser {
                 .basePath("/users");
     }
 
-    public Response deleteUser(String userId){
-        Response deleteResponse = this.requestSpecification.delete("/"+userId+"");
-        return  deleteResponse;
+    public Response deleteUser(String userId) {
+        Response deleteResponse = this.requestSpecification.delete("/" + userId + "");
+        return deleteResponse;
     }
 
-    public void validateDelete(Response deleteResponse){
+    public void validateDelete(Response deleteResponse) {
         Assert.assertEquals(deleteResponse.getStatusCode(), 204);
     }
 }

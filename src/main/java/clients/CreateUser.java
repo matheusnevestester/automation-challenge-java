@@ -32,26 +32,30 @@ public class CreateUser {
 
     public String buildUserPayload() {
         JsonObject requestBody = new JsonObject();
-        requestBody.addProperty("name",this.name);
-        requestBody.addProperty("job",this.job);
+        requestBody.addProperty("name", this.name);
+        requestBody.addProperty("job", this.job);
         return requestBody.toString();
     }
 
     public String buildBodyWithSurname() {
-        return null;
+        this.name = "" + this.name + " autoSurname";
+        JsonObject requestBody = new JsonObject();
+        requestBody.addProperty("name", this.name);
+        requestBody.addProperty("job", this.job);
+        return requestBody.toString();
     }
 
     public Response postRequest(String requestBody) {
-        Response postResponse = this.requestSpecification.given().header("Content-type","application/json").body(requestBody).post();
+        Response postResponse = this.requestSpecification.given().header("Content-type", "application/json").body(requestBody).post();
         return postResponse;
     }
 
-    public void validateUserResponse(Response postResponse){
+    public void validateUserResponse(Response postResponse) {
         String name = postResponse.jsonPath().get("name");
         String job = postResponse.jsonPath().get("job");
         Assert.assertEquals(postResponse.getStatusCode(), 201);
-        Assert.assertEquals(name,"Toy");
-        Assert.assertEquals(job,"singer");
+        Assert.assertEquals(name, "Toy");
+        Assert.assertEquals(job, "singer");
 
     }
 

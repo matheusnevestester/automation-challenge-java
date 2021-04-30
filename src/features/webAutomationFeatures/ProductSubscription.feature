@@ -1,13 +1,17 @@
 @ProductSubscription
 Feature: Product Subscription
 
-  Scenario: Validate product subscrition full journey
+  Scenario: Validate product subscription full journey
     Given I open Chrome and launch the application
     When I select type "Special"
     And  I select support plan "Full"
     And I write monthly duration of "6"
+    And I attach file "src/usefulFiles/lion.jpg"
+    And I send the comment "QA Automation"
     And I click in calculate price button
     Then I validate price is "2249.10 $"
+    And I validate the message sent
+    And I validate the file sent
 
   Scenario: Validate the product price for a full special support plan for 6 months simulation
     Given I open Chrome and launch the application
@@ -32,6 +36,20 @@ Feature: Product Subscription
       | Extra Special | Basic | 1        | 124.95 $ |
       | Premium       | Basic | 1        | 174.93 $ |
 
+  Scenario Outline: Validate incorrect month number
+    Given I open Chrome and launch the application
+    When I select type "Special"
+    And  I select support plan "Full"
+    And I write monthly duration of "<duration>"
+    And I click in calculate price button
+    Then I must see an alert informing that the month is incorrect
+
+    Examples:
+      | duration |
+      | 13       |
+      |          |
+      | 111      |
+      | -1       |
 
 # Due to the time available to do the project I wont do all variations
 

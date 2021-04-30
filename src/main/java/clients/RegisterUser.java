@@ -43,6 +43,6 @@ public class RegisterUser {
         int statusNumber = Integer.parseInt(status);
         String errorMessage = postResponse.jsonPath().get("error");
         Assert.assertEquals(postResponse.getStatusCode(), statusNumber);
-        Assert.assertEquals(errorMessage,"Missing password");
+        Assert.assertEquals(errorMessage, "Missing password");
     }
 }

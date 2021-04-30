@@ -1,4 +1,4 @@
-package browserTesting;
+package steps;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import pages.HomePage;
 
 
-public class Steps extends HomePage {
+public class ProductSubscriptionSteps extends HomePage {
 
     public HomePage homePage = new HomePage();
 
@@ -52,17 +52,37 @@ public class Steps extends HomePage {
     }
 
     @Then("^I validate price is \"(.*)\"$")
-    public void validatePrice(String price) throws InterruptedException {
+    public void validatePrice(String price) {
         WebElement priceElement = homePage.price();
         String priceFound = priceElement.getText();
         Assert.assertEquals(priceFound, price);
     }
 
 
-//    @Then("^I attach file \"(.*)\"$")
-//    public void	attachFile(String file) throws  {
-//        WebElement uploadElement = driver.findElement(By.id("attachment"));
-//        uploadElement.sendKeys(file);
-//    }
+    @When("^I attach file \"(.*)\"$")
+    public void attachFile(String file) {
+        homePage.uploadAttachment(file);
+    }
 
+    @When("^I send the comment \"(.*)\"$")
+    public void sendMessage(String comment) {
+        homePage.sendComment(comment);
+    }
+
+
+    @Then("^I must see an alert informing that the month is incorrect$")
+    public void getMonthAlert() {
+        homePage.validateMonthAlert();
+    }
+
+    @Then("^I validate the message sent$")
+    public void validateComment() {
+        homePage.validateCommentSent();
+    }
+
+    @Then("^I validate the file sent$")
+    public void validateFile() {
+//      Boolean fileSent = driver.findElement(By.id("selectedConfigurationFile")).isDisplayed();
+//      Assert.assertEquals(fileSent, true);
+    }
 }
